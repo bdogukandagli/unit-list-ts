@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, SetStateAction, Dispatch } from 'react';
+import React, { ReactElement, SetStateAction, Dispatch } from 'react';
 import { Box, Slider, Checkbox, Typography } from '@material-ui/core';
 
 interface IPropTypes {
@@ -10,8 +10,6 @@ interface IPropTypes {
 }
 
 const FilterSlider = (props: IPropTypes): ReactElement => {
-  const [value, setValue] = useState([0, 200]);
-
   return (
     <Box display="flex" flexDirection="row" justifyContent="left" alignItems="center">
       <Box>
@@ -27,19 +25,21 @@ const FilterSlider = (props: IPropTypes): ReactElement => {
       <Box minWidth="240px">
         <Slider
           disabled={!props.isActive}
-          value={value}
+          value={props.value}
           onChange={(event, newValue) => {
-            setValue(newValue as number[]);
+            props.setValue(newValue as number[]);
           }}
           valueLabelDisplay="auto"
           aria-labelledby="range-slider"
           getAriaValueText={() => {
-            return `${value}`;
+            return `${props.value}`;
           }}
+          min={0}
+          max={200}
         />
       </Box>
       <Box ml="2em">
-        <Typography>{`${value[0]} - ${value[1]}`}</Typography>
+        <Typography>{`${props.value[0]} - ${props.value[1]}`}</Typography>
       </Box>
     </Box>
   );
