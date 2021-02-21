@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import RouterPoint from '../router/router';
 import Header from '../components/header';
 import { createGlobalStyle } from 'styled-components';
+import { Provider } from 'react-redux';
+import store from '../store';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -16,10 +18,12 @@ const App = (): ReactElement => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <>
-        <Header />
-        <RouterPoint />
-      </>
+      <Provider store={store}>
+        <>
+          <Header />
+          <RouterPoint />
+        </>
+      </Provider>
     </React.Fragment>
   );
 };
