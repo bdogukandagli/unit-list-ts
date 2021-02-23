@@ -6,6 +6,9 @@ export const GET_ALL_UNITS_ERROR = 'GET_ALL_UNITS_ERROR';
 export const GET_FILTERED_UNITS_START = 'GET_FILTERED_UNITS_START';
 export const GET_FILTERED_UNITS_SUCCESS = 'GET_FILTERED_UNITS_SUCCESS';
 export const GET_FILTERED_UNITS_ERROR = 'GET_FILTERED_UNITS_ERROR';
+export const GET_UNIT_START = 'GET_UNIT_START';
+export const GET_UNIT_SUCCESS = 'GET_UNIT_SUCCESS';
+export const GET_UNIT_ERROR = 'GET_UNIT_ERROR';
 
 export interface GetAllUnitsStart {
   type: typeof GET_ALL_UNITS_START;
@@ -41,6 +44,21 @@ export interface GetFilteredUnitsError {
   payload: string;
 }
 
+export interface GetUnitStart {
+  type: typeof GET_UNIT_START;
+  payload: number;
+}
+
+export interface GetUnitSuccess {
+  type: typeof GET_UNIT_SUCCESS;
+  payload: IUnit;
+}
+
+export interface GetUnitError {
+  type: typeof GET_UNIT_ERROR;
+  payload: string;
+}
+
 export interface UnitState {
   units: IUnit[];
   isLoading: boolean;
@@ -53,4 +71,7 @@ export type UnitActionTypes =
   | GetAllUnitsError
   | GetFilteredUnitsError
   | GetFilteredUnitsStart
-  | GetFilteredUnitsSuccess;
+  | GetFilteredUnitsSuccess
+  | GetUnitStart
+  | GetUnitSuccess
+  | GetUnitError;

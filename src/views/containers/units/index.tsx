@@ -12,6 +12,7 @@ import {
   TableRow,
   TableCell,
   makeStyles,
+  Link,
 } from '@material-ui/core';
 import FilterSlider from '../../../components/filterSlider';
 import { Ages } from '../../../utils/constants';
@@ -159,7 +160,9 @@ const Units = (): ReactElement => {
                     <TableCell component="th" scope="row">
                       {unit.id}
                     </TableCell>
-                    <TableCell align="left">{unit.name}</TableCell>
+                    <TableCell align="left">
+                      <Link href={`/detail/${unit.id}`}>{unit.name}</Link>
+                    </TableCell>
                     <TableCell align="left">{unit.age}</TableCell>
                     <TableCell align="left">
                       {unit.cost ? (

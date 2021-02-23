@@ -14,12 +14,16 @@ import {
   UnitActionTypes,
   GET_FILTERED_UNITS_START,
   GetFilteredUnitsStart,
+  GET_UNIT_START,
+  GetUnitStart,
 } from '../actions/types';
 import {
   getAllUnitsSuccess,
   getAllUnitsError,
   getFilteredUnitsSuccess,
   getFilteredUnitsError,
+  getUnitSuccess,
+  getUnitError,
 } from '../actions/unitAction';
 
 export function* handleFetchAll(): Generator<PutEffect<UnitActionTypes>> {
@@ -93,8 +97,32 @@ function* watchGetFilteredRequest() {
   yield throttle(500, GET_FILTERED_UNITS_START, handleFetchFiltered);
 }
 
+export function* handleFetch(
+  action: GetUnitStart
+): Generator<PutEffect<UnitActionTypes>> {
+  try {
+    const id = action.payload;
+
+    yield put(getUnitSuccess(unitData.filter((u) => u.id == id)[0]));
+  } catch (err) {
+    if (err instanceof Error && err.stack) {
+      yield put(getUnitError(err.stack));
+    } else {
+      yield put(getUnitError('Network Error.'));
+    }
+  }
+}
+
+function* watchGetRequest() {
+  yield takeLatest(GET_UNIT_START, handleFetch);
+}
+
 function* unitSaga(): Generator<AllEffect<ForkEffect>> {
-  yield all([fork(watchGetAllRequest), fork(watchGetFilteredRequest)]);
+  yield all([
+    fork(watchGetAllRequest),
+    fork(watchGetFilteredRequest),
+    fork(watchGetRequest),
+  ]);
 }
 
 export default unitSaga;

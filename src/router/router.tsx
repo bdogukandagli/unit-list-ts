@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from '../views/containers/home/index';
 import Units from '../views/containers/units/index';
+import UnitDetail from '../views/containers/unitDetail/index';
 
 const RouterPoint = () => {
   return (
@@ -11,6 +12,7 @@ const RouterPoint = () => {
         <Route path="/units">
           <Units />
         </Route>
+        <Route path="/detail/:unitId" component={UnitDetail} />
         <Route path="/">
           <Home />
         </Route>

@@ -5,6 +5,9 @@ import {
   GET_FILTERED_UNITS_ERROR,
   GET_FILTERED_UNITS_SUCCESS,
   GET_FILTERED_UNITS_START,
+  GET_UNIT_START,
+  GET_UNIT_SUCCESS,
+  GET_UNIT_ERROR,
   UnitActionTypes,
   UnitState,
 } from '../actions/types';
@@ -46,6 +49,23 @@ export function unitReducer(state = initialState, action: UnitActionTypes): Unit
         isLoading: false,
       };
     case GET_FILTERED_UNITS_ERROR:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case GET_UNIT_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case GET_UNIT_SUCCESS:
+      return {
+        ...state,
+        units: [action.payload],
+        isLoading: false,
+      };
+    case GET_UNIT_ERROR:
       return {
         ...state,
         isLoading: false,
