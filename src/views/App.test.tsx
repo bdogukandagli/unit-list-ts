@@ -1,9 +1,23 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
 
-test('renders learn react link', () => {
+import App from './App';
+import Header from '../components/header/index';
+
+test('render app', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+});
+
+test('render header', () => {
+  render(<Header />);
+});
+
+test('render home link', () => {
+  render(<Header />);
+  expect(screen.getByText(/Home/i)).toBeInTheDocument();
+});
+
+test('render units link', () => {
+  render(<Header />);
+  expect(screen.getByText(/Units/i)).toBeInTheDocument();
 });
