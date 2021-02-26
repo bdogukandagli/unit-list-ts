@@ -33,6 +33,7 @@ const UnitDetail = ({ match }: RouteComponentProps<TParams>): ReactElement => {
       width={1}
       maxWidth="320px"
     >
+      <Box py="2em">Unit Details</Box>
       {units[0] &&
         Object.entries(units[0]).map(([key, value], index) => {
           return (

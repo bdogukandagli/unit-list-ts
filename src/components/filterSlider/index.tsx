@@ -14,6 +14,7 @@ const FilterSlider = (props: IPropTypes): ReactElement => {
     <Box display="flex" flexDirection="row" justifyContent="left" alignItems="center">
       <Box>
         <Checkbox
+          id={props.filterName}
           checked={props.isActive}
           onChange={() => props.setActive(!props.isActive)}
           color="primary"
@@ -24,6 +25,7 @@ const FilterSlider = (props: IPropTypes): ReactElement => {
       </Box>
       <Box minWidth="240px">
         <Slider
+          id={`${props.filterName}Slider`}
           disabled={!props.isActive}
           value={props.value}
           onChange={(event, newValue) => {

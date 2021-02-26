@@ -90,6 +90,7 @@ const Units = (): ReactElement => {
                       setSelectedAgeValueText(age);
                     }}
                     key={index}
+                    id={age}
                   >
                     {age}
                   </Button>
@@ -150,7 +151,7 @@ const Units = (): ReactElement => {
                 <TableCell>Id</TableCell>
                 <TableCell align="left">Name</TableCell>
                 <TableCell align="left">Age</TableCell>
-                <TableCell align="left">Costs</TableCell>
+                <TableCell align="left">Cost</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
